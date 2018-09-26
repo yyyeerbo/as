@@ -100,6 +100,7 @@ int main(int argc, char *argv[])
     fprintf(stderr, "maped address again: %lx\n", heap);
 
     /* try to switch mm */
+    fprintf(stderr, "as_switch_mm\n");
     ret = syscall(SYS_as_switch_mm, fd);
     if (ret) {
         perror("as_switch_mm\n");
@@ -112,6 +113,7 @@ int main(int argc, char *argv[])
     memcpy(buf, heap, 19);
     fprintf(stderr, "file content: %s\n", buf);
     close(bfd);
-    syscall(SYS_as_destroy, fd);
+//    syscall(SYS_as_destroy, fd);
+    close(fd);
     return 0;
 }
